@@ -1,0 +1,9 @@
+<% let selected;
+            for(let i = 0; i < movies.length; i++) { 
+            const movie = movies[i];
+        
+        %>
+            <div class="col-md-3">
+                <input <% selected = movie._id %> type="image" value="" src="/moviestore/<%= movie.image%>"><%= movie.title %>
+            </div>
+        <% } %>

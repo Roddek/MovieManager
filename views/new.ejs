@@ -1,0 +1,24 @@
+<%- include('header')%>
+<form action="/movies" class="form" id="newForm" method="post">
+    <h1>New upcoming Movie</h1>
+    <div class="col-md-5">
+        <label>Title:</label>
+        <input type="text" id="title" name="title"><br><br>
+        <label>Genre:</label>
+        <input type="text" id="genre" name="genre"><br><br>
+        <label>Director:</label>
+        <input type="text" id="dir" name="dir"><br><br>
+        <label>Casting:</label>
+        <input type="text" id="cast" name="cast"><br><br>
+
+        <input type="submit" value="Add" class="generalBtns"><br>
+    </div>
+    <div class="col-md-5">
+        <label>Release date:</label>
+        <input type="text" id="datepicker" name="datepicker"><br><br>
+        <input type="file" id="file-input" class="custom-file-input" name="files" >
+        <label for="file-input" class="generalBtns" id="file-inputBtn">Choose a file...</label>
+        <a href="/movies" class="generalBtns" id="newbackBtn">Back</a><br>
+    </div>
+</form>
+<%- include('footer')%>

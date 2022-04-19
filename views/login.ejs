@@ -1,0 +1,12 @@
+<%- include('header')%>
+<form action="/movies" class="form" id="loginForm" method="post">
+    <h1>Login</h1>
+    <label>Username:</label>
+    <input type="text" id="username" name="username"><br>
+    <label>Password:</label>
+    <input type="text" id="pass" name="pass"><br>
+    <input type="submit" value="Login" class="generalBtns" id="loginBtn" >
+    <a link rel="stylesheet" href="/registration" class="loginlinks" style="margin-left: 50%">Create new account</a>
+    <a link rel="stylesheet" href="/forgotpw" class="loginlinks" style="margin-left: 51.5%; margin-top: 35px">Forgot password</a>
+</form>
+<%- include('footer')%>

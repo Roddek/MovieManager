@@ -1,0 +1,16 @@
+<%- include('header')%>
+<form action="main.html" class="form" id="updateForm" method="post">
+    <h1>Update</h1>
+    <label>Release date:</label>
+    <input type="text" id="datepicker" name="datepicker"><br><br>
+    <label>Genre:</label>
+    <input type="text" id="genre" name="genre"><br><br>
+    <label>Director:</label>
+    <input type="text" id="dir" name="dir"><br><br>
+    <label>Casting:</label>
+    <input type="text" id="cast" name="cast"><br><br>
+
+    <input type="submit" value="Done" class="generalBtns" id="updatedoneBtn"><br>
+    <a href="main.html" class="generalBtns" id="updatebackBtn">Back</a><br>
+</form>
+<%- include('footer')%>

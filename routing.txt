@@ -1,0 +1,122 @@
+- index.html - login form (szöveg)
+- newAccount.html - szöveg
+- forgotpw.html - szöveg
+- main.html - movie  lista (edit, delete), új film gomb, watched gomb
+- new.html - movie save, cancel
+- update.html - movie edit, cancel
+
+
+Screens:
+    login           index.html
+    reg             newAccount.html
+    forgot pw       forgotpw.html
+    list movies     main.html
+    new movie       new.html
+    edit movie      update.html
+    no screen for del
+    no screen for logout
+    no screen for watched
+
+renderMW = (viewLifeName) => {
+    return (req, res, next) => {
+        res.render(viewFileName,req.locals);
+    }
+}
+
+inverseAuthMW:
+    if (typeof req.session.user_id === 'udefined'){
+        return next();
+    }
+    return res.redirect("/images");
+
+    megnézi, hogy a user be van-e lépve
+        true: átirányítás /movies
+        else: next()
+
+loginMW:
+    Ha nem érkezett post adat, hívjak nextet (ellenőrzi post alapján, hogy vannak-e beérkező adatok)
+        - next()
+    2 form field (req.bod.username && req.body.password)
+    szól a db-nek, h van-e....
+        azonos-e a kapott jelszó a db-ben tárolttal
+    Ha jó:
+        session eltárolom valamit, hogy belépett
+        átirányít: /movies
+    Ha rossz:
+    req.locals = {error: 'Helytelen jelszó'}
+        return next();
+
+regMW:
+    Ha nem érkezett post adat, hívjak nextet
+        - next()
+
+getMoviesMW:
+    - a belépett felhasználó filmjeit kinyeri db-ből
+
+    db.find({user_id:req.session.user_id},(err) =>{
+        req.locals.movies = data;
+        return next();
+    });
+
+saveMovieMW:
+    Ha nem érkezett post adat, átirányítás:
+        - redirect(/movies/new)
+    egyébként:
+        elmentem a db-be és utána a felhasználót átirányítom a /movies url-re
+
+getMovieMW:
+    - az url-ben érkező movieid és a sessionben lévő userid alapján kinyeri a db-ből az adott filmet ( ha nincs -> redirect /movies)
+            - elmenti a res.locals.movie-be + next
+
+(GET|POST) -> app.use(...
+
+Routing:
+    (GET|POST)  |   /                                   | LOGIN
+        inverseAuthMW()                                 | ha be van lépve -> /movies, ha nincs -> next()
+        loginMW()
+        renderMW('index.html')
+--------------------------------------------------------------------------------------------------
+    (GET|POST)  |   /reg                                | REG
+        inverseAuthMW()
+        regMW()
+        renderMW('newAccount.html')
+--------------------------------------------------------------------------------------------------
+    (GET|POST)  |   /forgotpw                           | FORGOT PASS
+        inverseAuthMW()                                 | új jelszóval felülírjuk a db-t, majd kiírjuk a console gol-ra
+        forgotPwMW()
+        renderMW('forgotpw.html')
+--------------------------------------------------------------------------------------------------
+    GET         |   /movies                             | LIST MOVIES
+        authMW()
+        getMoviesMW()
+        renderMW('main.html')
+--------------------------------------------------------------------------------------------------
+    GET         |   /movies/new                         | NEW
+        authMW()
+        renderMW('new.html')  -> összevonható az edittel -> render('update.html)'
+    POST        |   /movies/new
+        authMW()
+        saveMovieMW()
+--------------------------------------------------------------------------------------------------
+    GET         |   /movies/edit/:movieid               | EDIT
+        authMW()
+        getMovieMW()
+        renderMW('update.html')
+    POST        |   /movies/edit/:movieid
+        authMW()
+        getMovieMW()
+        saveMovieMW
+--------------------------------------------------------------------------------------------------
+    GET         |   /movies/del/:movieid                | DEL (redirect)
+        authMW()
+        getMovieMW()
+        deleteMovieMW()
+--------------------------------------------------------------------------------------------------
+    GET         |   /movies/watched/:movieid            | WATCHED
+        authMW()
+        getMovieMW()
+        watchedMovieMW()
+--------------------------------------------------------------------------------------------------
+    GET         |   /logout                             | redirect
+        authMW()
+        logoutMW()

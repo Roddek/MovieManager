@@ -1,0 +1,349 @@
+@import "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css";
+
+/*#region Forms*/
+.form{
+    background-color: white;
+    padding: 10px 30px 60px;
+    width: 30%;
+    height: 650px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+    font-weight: bold;
+    border-radius: 20px;
+    border: 2px solid black;
+}
+#newForm{
+    width: 80%;
+    height: 850px;
+    margin-top: 50px;
+}
+#updateForm{
+    margin-top: 20px;
+    height: 850px;
+}
+/*endregion Forms*/
+
+/*#region Login*/
+#loginBtn{
+    display: block;
+    left: 90px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.loginlinks{
+    position: fixed;
+    left: 0px;
+    top: 620px
+}
+/*#endregion Login*/
+
+.generalBtns{
+    border-radius: 10px;
+    background-color: white;
+    color: dodgerblue;
+    position: relative;
+    margin-left: 80px;
+    height: 50px;
+    width: 200px;
+    font-size: 30px;
+    font-weight: bold;
+    border: 3px solid dodgerblue;
+    transition: 0.3s;
+}
+.generalBtns:hover{
+    opacity: 1;
+    background-color: dodgerblue;
+    cursor: pointer;
+    color: white;
+}
+
+/*#region Inputs*/
+input[type="text"]{
+    border-radius: 10px;
+    background-color: lightgrey;
+    height: 45px;
+    width: 80%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    padding: 4px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: 3px solid black;
+    font-size: 30px;
+    transition: 0.3s;
+}
+input[type="text"]:hover{
+    box-shadow: 0px 0px 5px grey;
+}
+
+input[type="image"]{
+    height: 200px;
+    width: 200px;
+    object-fit: cover;
+    display: block;
+    margin: 15px auto 30px;
+}
+
+input[type="file"]{
+    display: none;
+}
+/*#endregion Inputs*/
+
+/*#region Tags*/
+h1{
+    text-align: center;
+    font-size: 45px;
+    padding-bottom: 50px;
+    font-weight: bold;
+}
+
+label{
+    font-size: 30px;
+    padding-left: 80px;
+}
+body{
+    background-color: slategray;
+    font-family: Century Gothic;
+}
+
+a{
+    font-family: "Times New Roman";
+    text-decoration: none;
+    font-style: italic;
+    font-weight: lighter;
+    font-size: 25px;
+    transition: 0.3s;
+    text-align: right;
+}
+a:hover{
+    opacity: 60%;
+    cursor: pointer;
+    text-decoration: none;
+}
+/*#endregion Tags*/
+
+/*#region MainLayout*/
+.details{
+    border-radius: 10px;
+    background-color: lightskyblue;
+    border: 3px solid dodgerblue;
+    text-align: left;
+    padding-left: 50px;
+    padding-top: 20px;
+    margin-left: 8%;
+    margin-right: 8%;
+    margin-bottom: 50px;
+    font-size: 25px;
+}
+
+.main {
+    width: 60%;
+    position: fixed;
+    top: 20px;
+    left: 70px;
+    padding: 8px 0;
+}
+
+.sidebar {
+    width: 40%;
+    margin-left: 60%;
+    margin-top: 50px;
+    font-size: 28px;
+    font-weight: bold;
+    padding-right: 70px;
+    padding-left: 50px;
+}
+
+.col-md-3{
+    background-color: lightgrey;
+    border: 3px solid black;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 250px;
+    transition: 0.3s;
+}
+
+.col-md-3:hover{
+    border-color: dodgerblue;
+    background-color: lightskyblue;
+}
+/*#endregion MainLayout*/
+
+/*#region MainBtns*/
+.mainPagebtns{
+    font-family: Century Gothic;
+    font-style: normal;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    transition: 0.3s;
+    padding: 7px 20px;
+}
+
+#updateBtn{
+    background-color: white;
+    border: 3px solid dodgerblue;
+    color: dodgerblue;
+    position: fixed;
+    margin-left: 0;
+    left: 75%;
+    margin-right: 18%;
+    padding-right: 40px;
+    padding-left: 40px;
+}
+#updateBtn:hover{
+    opacity:1;
+    background-color: dodgerblue;
+    cursor: pointer;
+    color: white;
+}
+
+#watchedBtn{
+    background-color: white;
+    border: 3px solid limegreen;
+    color: limegreen;
+    position: fixed;
+    margin-left: 0;
+    left: 74.5%;
+    top: 540px;
+    margin-right: 17%;
+    padding-right: 40px;
+    padding-left: 40px;
+}
+#watchedBtn:hover{
+    opacity: 1;
+    background-color: limegreen;
+    cursor: pointer;
+    color: white;
+}
+
+#newBtn{
+    background-color: white;
+    border: 3px solid dodgerblue;
+    color: dodgerblue;
+    position: fixed;
+    margin-left: 0;
+    left: 66%;
+    width: 60px;
+}
+#newBtn:hover{
+    opacity:1;
+    background-color: dodgerblue;
+    cursor: pointer;
+    color: white;
+}
+
+#delBtn{
+    background-color: white;
+    border: 3px solid firebrick;
+    color: firebrick;
+    position: fixed;
+    margin-left: 0;
+    left: 89.7%;
+    width: 60px;
+}
+#delBtn:hover{
+    opacity: 1;
+    background-color: firebrick;
+    cursor: pointer;
+    color: white;
+}
+
+#logoutBtn{
+    background-color: white;
+    border: 3px solid slategray;
+    color: slategray;
+    position: fixed;
+    margin-left: 0;
+    left: 75%;
+    top: 615px;
+    margin-right: 18%;
+    padding-right: 40px;
+    padding-left: 40px;
+    white-space: nowrap;
+}
+#logoutBtn:hover{
+    opacity: 1;
+    background-color: slategray;
+    cursor: pointer;
+    color: white;
+}
+/*#endregion MainBtns*/
+
+/*#region NewMovie*/
+#file-inputBtn{
+    font-size: 30px;
+    padding-left: 10px;
+    margin-top: 60px;
+    margin-left: 60px;
+    width: 250px;
+    color: slategrey;
+    border-color: slategrey;
+}
+#file-inputBtn:hover{
+    opacity: 1;
+    background-color: slategray;
+    cursor: pointer;
+    color: white;
+}
+
+#newbackBtn{
+    background-color: white;
+    border-color: firebrick;
+    color: firebrick;
+    font-family: Century Gothic;
+    font-weight: bold;
+    padding: 4px 70px;
+    font-style: normal;
+    font-size: 30px;
+    position: relative;
+    top: 347px;
+    left: 200px;
+}
+#newbackBtn:hover{
+    opacity: 1;
+    background-color: firebrick;
+    cursor: pointer;
+    color: white;
+}
+/*#endregion NewMovie*/
+
+/*#region UpdateMovie*/
+#updatebackBtn{
+    background-color: white;
+    border-color: firebrick;
+    color: firebrick;
+    font-family: Century Gothic;
+    font-weight: bold;
+    padding: 4px 50px;
+    font-style: normal;
+    font-size: 30px;
+    position: relative;
+    top: -35px;
+    left: 190px;
+}
+#updatebackBtn:hover{
+    opacity: 1;
+    background-color: firebrick;
+    cursor: pointer;
+    color: white;
+}
+
+#updatedoneBtn{
+    width: 180px;
+    top: 11px;
+    left: -20px;
+}
+/*#endregion UpdateMovie*/

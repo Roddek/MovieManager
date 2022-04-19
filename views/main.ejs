@@ -1,0 +1,41 @@
+<%- include('header')%>
+<div class="main">
+    <% let selected;
+    let movie;
+    let ids = [];
+    for(let i = 0; i < movies.length; i++) {
+        movie = movies[i];
+        ids[i] = movie._id;
+    %>
+    <div class="col-md-3" >
+        <input id="<%= movie._id%>" onclick="asd(movie._id)" type="image" value="" src="/moviestore/<%= movie.image%>"><%= movie.title %>
+    </div>
+
+    <% console.log(ids); } %>
+
+    <script type="application/javascript">
+        function asd(id){
+            //alert("megnyomva");
+            selected = id;
+        }
+    </script>
+</div>
+<div class="sidebar">
+    <div class="details">
+        <p>Release date:</p>
+        <br>
+        <p>Genre:</p>
+        <br>
+        <p>Director:</p>
+        <br>
+        <p>Casting:</p>
+        <br>
+    </div>
+    <a href="/movies/new" class="mainPagebtns" id="newBtn">+</a>
+    <a class="mainPagebtns" id="updateBtn" href="/movies/edit/<%= selected%>">Update</a>
+    <a href="/movies/del/<%= selected%>" class="mainPagebtns" id="delBtn">-</a>
+    <a href="/movies/watched/<%= selected%>" value="Watched" class="mainPagebtns" id="watchedBtn">Watched</a>
+    <a class="mainPagebtns" id="logoutBtn" href="/logout">Log out</a>
+</div>
+</div>
+<%- include('footer')%>
