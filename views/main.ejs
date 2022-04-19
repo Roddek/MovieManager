@@ -1,6 +1,7 @@
 <%- include('header')%>
 <div class="main">
-    <% let selected;
+    <%
+    let selected;
     let movie;
     let ids = [];
     for(let i = 0; i < movies.length; i++) {
@@ -8,15 +9,15 @@
         ids[i] = movie._id;
     %>
     <div class="col-md-3" >
-        <input id="<%= movie._id%>" onclick="asd(movie._id)" type="image" value="" src="/moviestore/<%= movie.image%>"><%= movie.title %>
+        <input id="<%= movie._id%>" onclick="setSelected(this.id)" type="image" value="" src="/moviestore/<%= movie.image%>"><%= movie.title %>
     </div>
 
-    <% console.log(ids); } %>
+    <% } %>
 
     <script type="application/javascript">
-        function asd(id){
-            //alert("megnyomva");
+        function setSelected(id){
             selected = id;
+            //alert(id);
         }
     </script>
 </div>
