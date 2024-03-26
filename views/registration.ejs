@@ -1,10 +1,13 @@
-<%- include('header')%>
-<form action="/" class="form" method="post" style="height: 600px">
+<%- include('header', {pagetitle: 'Sign up'})%>
+<form action="/registration" class="form" method="post" style="height: 600px">
     <h1>Create new account</h1>
-    <label>Username:</label>
+    <% if (typeof error !== 'undefined'){ %>
+        <h3 class="error" style="left: 44.5%;"><%= error%></h3>
+    <% } %>
+    <label style="margin-top: 30px">Username:</label>
     <input type="text" id="username" name="username"><br><br>
     <label>Password:</label>
-    <input type="text" id="pass" name="pass"><br><br>
+    <input type="password" id="password" name="password"><br><br>
     <input type="submit" value="Sign up" id="loginBtn" class="generalBtns"><br>
     <a link rel="stylesheet" href="/" style="margin-left: 75%">Back</a>
 </form>

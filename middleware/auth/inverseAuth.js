@@ -5,12 +5,10 @@
  */
 
 module.exports = (objectrepo) => {
-    return (res, req, next) => {
-        /*if (typeof req.session.userid === 'undefined') {
-            return next();
-        }*/
-        //return res.redirect('/movies');
-        console.log("inverseAuth siker");
+    return (req, res, next) => {
+        if (typeof req.session.user_id !== 'undefined') {
+            return res.redirect('/movies');
+        }
         return next();
     }
 }

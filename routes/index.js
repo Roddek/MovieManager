@@ -2,6 +2,7 @@ const authMW = require('../middleware/auth/auth');
 const inverseAuthMW = require('../middleware/auth/inverseAuth');
 const loginMW = require('../middleware/auth/login');
 const regMW = require('../middleware/auth/reg');
+const uniqueUserMW = require('../middleware/auth/uniqueUser');
 const forgotPwMW = require('../middleware/auth/forgotPw');
 const logoutMW = require('../middleware/auth/logout');
 
@@ -12,22 +13,32 @@ const deleteMovieMW = require('../middleware/movies/deleteMovie');
 const watchedMovieMW = require('../middleware/movies/watchedMovie');
 
 const renderMW = require('../middleware/render');
+const multer  = require('multer');
+
+const UserModel = require('../models/user');
+const MovieModel = require('../models/movie');
 
 module.exports = function addRoutes(app){
-    const objRepo = {};
+    const storage = multer.diskStorage({
+        destination: function (req, file, cb) {
+            cb(null, 'uploads/')
+        },
+        filename: function (req, file, cb) {
+            cb(null, file.fieldname + '-' + Date.now() + '.png')
+        }
+    })
+    const upload = multer({ dest: 'uploads/', storage })
+    const objRepo = { UserModel, MovieModel };
 
     /**
      * new movie
      */
-    app.get('/movies/new',
+    app.use('/movies/new',
         authMW(objRepo),
+        upload.single('movieimage'),
+        saveMovieMW(objRepo),
         renderMW(objRepo, 'new')
     );
-    app.post('/movies/new',
-        authMW(objRepo),
-        saveMovieMW(objRepo)
-    );
-
     /**
      * get movie
      */
@@ -40,6 +51,7 @@ module.exports = function addRoutes(app){
     /**
      * update movie
      */
+
     app.get(
         '/movies/edit/:movieid',
         authMW(objRepo),
@@ -69,7 +81,9 @@ module.exports = function addRoutes(app){
     app.get('/movies/watched/:movieid',
         authMW(objRepo),
         getMovieMW(objRepo),
-        watchedMovieMW(objRepo)
+        watchedMovieMW(objRepo),
+        saveMovieMW(objRepo),
+        getMoviesMW(objRepo)
     );
 
     /**
@@ -86,8 +100,7 @@ module.exports = function addRoutes(app){
      */
     app.get('/logout',
         authMW(objRepo),
-        logoutMW(objRepo),
-        renderMW(objRepo, 'login')
+        logoutMW(objRepo)
     );
 
     /**
@@ -95,6 +108,7 @@ module.exports = function addRoutes(app){
      */
     app.use('/registration',
         inverseAuthMW(objRepo),
+        uniqueUserMW(objRepo),
         regMW(objRepo),
         renderMW(objRepo, 'registration')
     );

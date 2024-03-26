@@ -5,14 +5,15 @@ const Movie = db.model('Movie', {
     title: String,
     genre: String,
     director: String,
-    cast: String,
-    release_date: Date,
+    actors: String,
+    release_date: String,
     img_filename: String,
     watched: Boolean,
-    _user: {
+    nextRelease: Boolean,
+    _user: [{
         type: Schema.Types.ObjectId,
         ref: 'User'
-    }
+    }]
 });
 
 module.exports = Movie;

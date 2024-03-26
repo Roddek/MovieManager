@@ -1,42 +1,50 @@
-<%- include('header')%>
-<div class="main">
-    <%
-    let selected;
-    let movie;
-    let ids = [];
-    for(let i = 0; i < movies.length; i++) {
-        movie = movies[i];
-        ids[i] = movie._id;
-    %>
-    <div class="col-md-3" >
-        <input id="<%= movie._id%>" onclick="setSelected(this.id)" type="image" value="" src="/moviestore/<%= movie.image%>"><%= movie.title %>
-    </div>
-
-    <% } %>
-
-    <script type="application/javascript">
-        function setSelected(id){
-            selected = id;
-            //alert(id);
-        }
-    </script>
-</div>
-<div class="sidebar">
-    <div class="details">
-        <p>Release date:</p>
-        <br>
-        <p>Genre:</p>
-        <br>
-        <p>Director:</p>
-        <br>
-        <p>Casting:</p>
-        <br>
-    </div>
+<%- include('header', {pagetitle: 'Main'})%>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<div class="mainPage">
     <a href="/movies/new" class="mainPagebtns" id="newBtn">+</a>
-    <a class="mainPagebtns" id="updateBtn" href="/movies/edit/<%= selected%>">Update</a>
-    <a href="/movies/del/<%= selected%>" class="mainPagebtns" id="delBtn">-</a>
-    <a href="/movies/watched/<%= selected%>" value="Watched" class="mainPagebtns" id="watchedBtn">Watched</a>
     <a class="mainPagebtns" id="logoutBtn" href="/logout">Log out</a>
+    <div class="main">
+        <%
+        for(let i = 0; i < movies.length; i++) {
+            let movie = movies[i];
+        %>
+        <div  <% if (movie.watched) { %> id="watchedMovie" <% } else { %> id="notWatchedMovie" <% } %>
+        <% if (movie.nextRelease) { %> class="col-md-4" <% } else { %> class="col-md-3" <% } %>>
+            <img src="/moviestore/<%= movie.img_filename%>" class="filmkep" data-id="<%= movie._id%>" /><%= movie.title %>
+        </div>
+        <% } %>
+    </div>
+    <%
+    for(let i = 0; i < movies.length; i++) {
+        let movie = movies[i];
+    %>
+    <div class="sidebar" id="sidebar-<%= movie._id%>" style="display:none">
+        <div class="details">
+            <p style="font-size: 30px; text-align: center"><%= movie.title%></p>
+            <p class="categories">Release date:</p>
+            <p class="description"><%= movie.release_date%></p>
+            <p class="categories">Genre:</p>
+            <p class="description"><%= (movie.genre === '') ? 'Unknown' : movie.genre%></p>
+            <p class="categories">Director:</p>
+            <p class="description"><%= (movie.director === '') ? 'Unknown' : movie.director%></p>
+            <p class="categories">Casting:</p>
+            <p class="description"><%= (movie.actors === '') ? 'Unknown' :  movie.actors%></p>
+        </div>
+        <a class="mainPagebtns" id="updateBtn" href="/movies/edit/<%=
+            movie._id%>" >Update</a>
+        <a href="/movies/del/<%= movie._id%>" class="mainPagebtns"
+           id="delBtn">-</a>
+        <a href="/movies/watched/<%= movie._id%>" value="Watched"
+           class="mainPagebtns" id="watchedBtn">Watched</a>
+    </div>
+    <% } %>
 </div>
-</div>
+<script type="application/javascript">
+    $(function(){
+        $(".filmkep").click(function(e){
+            $(".sidebar").hide();
+            $("#sidebar-"+$(this).data('id')).show();
+        });
+    })
+</script>
 <%- include('footer')%>

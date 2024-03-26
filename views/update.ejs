@@ -1,16 +1,19 @@
-<%- include('header')%>
-<form action="main.html" class="form" id="updateForm" method="post">
-    <h1>Update</h1>
+<%- include('header', {pagetitle: 'Update'})%>
+<form action="/movies/edit/<%= movie._id%>" class="form" id="updateForm" method="post">
+    <h1 style="padding-bottom: 10px">Update <%= movie.title%></h1>
+    <input type="text" id="title" name="title" value=" <%= movie.title%>" style="display: none"><br>
     <label>Release date:</label>
-    <input type="text" id="datepicker" name="datepicker"><br><br>
+    <input type="text" id="release_date" name="release_date" value="<%= movie.release_date%>" placeholder="yyyy. mm. dd."><br><br>
     <label>Genre:</label>
-    <input type="text" id="genre" name="genre"><br><br>
+    <input type="text" id="genre" name="genre" value="<%= movie.genre%>"><br><br>
     <label>Director:</label>
-    <input type="text" id="dir" name="dir"><br><br>
+    <input type="text" id="director" name="director" value="<%= movie.director%>"><br><br>
     <label>Casting:</label>
-    <input type="text" id="cast" name="cast"><br><br>
-
+    <textarea type="text" id="actors" name="actors" value="<%= movie.actors%>" style="height: 180px"><%= movie.actors%></textarea><br><br>
+    <div class="img_background">
+        <img src="/moviestore/<%= movie.img_filename%>" class="updateMoviePicture">
+    </div>
     <input type="submit" value="Done" class="generalBtns" id="updatedoneBtn"><br>
-    <a href="main.html" class="generalBtns" id="updatebackBtn">Back</a><br>
+    <a href="/movies" class="generalBtns" id="updatebackBtn">Back</a><br>
 </form>
 <%- include('footer')%>

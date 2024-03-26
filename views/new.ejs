@@ -1,23 +1,26 @@
-<%- include('header')%>
-<form action="/movies" class="form" id="newForm" method="post">
+<%- include('header', {pagetitle: 'New'})%>
+<form action="/movies/new" class="form" id="newForm" method="POST", enctype="multipart/form-data">
     <h1>New upcoming Movie</h1>
-    <div class="col-md-5">
+    <% if (typeof error !== 'undefined'){ %>
+        <h3 class="error" style="left: 315px; top: 150px"><%= error%></h3>
+    <% } %>
+    <div class="col-md-6">
         <label>Title:</label>
         <input type="text" id="title" name="title"><br><br>
         <label>Genre:</label>
         <input type="text" id="genre" name="genre"><br><br>
         <label>Director:</label>
-        <input type="text" id="dir" name="dir"><br><br>
-        <label>Casting:</label>
-        <input type="text" id="cast" name="cast"><br><br>
+        <input type="text" id="director" name="director"><br>
+        <input type="file" id="movieimage" class="custom-file-input" name="movieimage" >
+        <label for="movieimage" class="generalBtns" id="movieimageLbl">Choose a file...</label>
 
-        <input type="submit" value="Add" class="generalBtns"><br>
+        <input type="submit" id="newAddBtn" value="Add" class="generalBtns"><br>
     </div>
-    <div class="col-md-5">
+    <div class="col-md-6">
         <label>Release date:</label>
-        <input type="text" id="datepicker" name="datepicker"><br><br>
-        <input type="file" id="file-input" class="custom-file-input" name="files" >
-        <label for="file-input" class="generalBtns" id="file-inputBtn">Choose a file...</label>
+        <input type="text" id="release_date" name="release_date" placeholder="yyyy. mm. dd."><br><br>
+        <label>Casting:</label>
+        <textarea  type="text" id="actors" name="actors" rows="5" style="height: 180px"></textarea>
         <a href="/movies" class="generalBtns" id="newbackBtn">Back</a><br>
     </div>
 </form>

@@ -1,10 +1,13 @@
-<%- include('header')%>
+<%- include('header', {pagetitle: 'Login'})%>
 <form action="/movies" class="form" id="loginForm" method="post">
-    <h1>Login</h1>
+    <h1>Login</h1><br>
+    <% if (typeof error !== 'undefined'){ %>
+        <h3 class="error" style="left: 45%;"><%= error%></h3>
+    <% } %>
     <label>Username:</label>
-    <input type="text" id="username" name="username"><br>
+    <input type="text" id="username" name="username"><br><br>
     <label>Password:</label>
-    <input type="text" id="pass" name="pass"><br>
+    <input type="password" id="password" name="password"><br><br>
     <input type="submit" value="Login" class="generalBtns" id="loginBtn" >
     <a link rel="stylesheet" href="/registration" class="loginlinks" style="margin-left: 50%">Create new account</a>
     <a link rel="stylesheet" href="/forgotpw" class="loginlinks" style="margin-left: 51.5%; margin-top: 35px">Forgot password</a>
